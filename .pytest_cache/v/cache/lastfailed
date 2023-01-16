@@ -1,0 +1,4 @@
+{
+  "tests/test_buy_product.py::test_select_product_1": true,
+  "tests/test_fill_forms.py::test_fill_booking_forms": true
+}

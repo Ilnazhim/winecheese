@@ -1,0 +1,36 @@
+
+start browser for test..
+
+Start Test 1
+Start logs
+Current url https://www.dns-shop.ru/
+Click enter button
+Click enter button v2
+Click enter with password
+Input email
+Input password
+Click enter to lk button
+Assert element is present
+Screenshot
+End logs
+Start logs
+Current url https://www.dns-shop.ru/
+Click smartphone and gadgets category
+Click smartphone subcategory
+End logs
+Start logs
+Input cost min
+Input cost max
+Choose model Samsung
+Click submit button
+End logs
+Start logs
+Click buy button
+Click cart button
+End logs
+Screenshot
+Click delete product
+End logs
+Finish Test 1
+
+quit browser..
