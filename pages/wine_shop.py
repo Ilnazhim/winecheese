@@ -1,6 +1,6 @@
 import time
 from selenium.common import StaleElementReferenceException
-from selenium.webdriver import ActionChains
+from selenium.webdriver import ActionChains, Keys
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -17,6 +17,11 @@ class WineShopPage(BaseClass):
     # Locators
     button_yes_18_old = "//button[@class='CheckAge_page__btn__w0129']"
     ask_wine_shop_forma = "//span[@class='PageFooter_footer__link__2yvLx']"
+    menu = "//h2"
+    menu_2 = "//div[@class='AdvBlock_content__q7QRV undefined']"
+
+    label = ActionChains(browser)
+
     ask_wine_forma = "//p[@class='ProductCard_card__info__wgxIR']"
     ask_wine_forma_cart = "//div[@class='Modal_content__link__+sw8X']"
 
@@ -27,12 +32,20 @@ class WineShopPage(BaseClass):
     button_send_form = "//button[@class='Button_button__RNIJo']"
     close = "//button[@class='FormModal_modal__header_button__-X7yr']"
 
+
+
     # Getters
     def get_button_yes_18_old(self):
         return WebDriverWait(self.browser, 30).until(EC.element_to_be_clickable((By.XPATH, self.button_yes_18_old)))
 
     def get_ask_wine_shop_forma(self):
         return WebDriverWait(self.browser, 30).until(EC.element_to_be_clickable((By.XPATH, self.ask_wine_shop_forma)))
+
+    def get_menu(self):
+        return WebDriverWait(self.browser, 30).until(EC.element_to_be_clickable((By.XPATH, self.menu)))
+
+    def get_menu_2(self):
+        return WebDriverWait(self.browser, 30).until(EC.element_to_be_clickable((By.XPATH, self.menu_2)))
 
     def get_ask_wine_forma(self):
         return WebDriverWait(self.browser, 30).until(EC.element_to_be_clickable((By.XPATH, self.ask_wine_forma)))
@@ -60,6 +73,18 @@ class WineShopPage(BaseClass):
     def click_ask_wine_shop_forma(self):
         self.get_ask_wine_shop_forma().click()
         print("Click ask_wine_shop_forma")
+
+    def click_menu(self):
+        self.get_menu().click()
+        print("Click menu")
+
+    def click_menu_2(self):
+        self.get_menu_2().click()
+        print("Click menu 2")
+
+    def input_key(self):
+        self.label.send_keys(Keys.TAB)
+        print("input_key")
 
     def click_ask_wine_forma_cart(self):
         self.get_ask_wine_forma_cart().click()
@@ -109,17 +134,27 @@ class WineShopPage(BaseClass):
         """Fill ask_wine_forma"""
         # with allure.step("select_products_1"):
         Logger.add_start_step(method="ask_wine_forma")
-
+        self.browser.maximize_window()
         self.get_current_url()
         self.click_button_yes_18_old()
-        self.browser.execute_script("window.scrollTo(0,500);")
+        time.sleep(1)
+        self.click_menu()
+        self.input_key()
+        self.browser.execute_script("window.scrollBy(0,1000);")
+        self.click_menu_2()
+        # self.input_key()
+        time.sleep(5)
+        # action = ActionChains(browser)
+        # scrollto = self.browser.find_element(By.XPATH, "//span[@class='PageFooter_footer__link__2yvLx']")
+        # action.move_to_element(scrollto).perform()
+
         self.click_ask_wine_forma()
         self.click_ask_wine_forma_cart()
         self.input_name_fio_ask_wine_forma()
         self.input_phone()
         self.input_telegram()
-        self.click_button_send_form()
+        # self.click_button_send_form()
 
         time.sleep(3)
-        assert self.is_not_element_present(By.XPATH, self.close)
+        assert self.is_not_element_present(By.XPATH, self.close), "Should be not close button"
         Logger.add_end_step(url=self.browser.current_url, method="ask_wine_forma")

@@ -18,7 +18,7 @@ class BaseClass:
     """Metod get current url"""
     def get_current_url(self):
         get_url = self.browser.current_url
-        print("Current url " + get_url)
+        print(get_url)
 
     """Metod assert word"""
     def assert_word(self, word, result):

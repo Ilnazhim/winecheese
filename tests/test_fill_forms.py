@@ -1,11 +1,12 @@
 import time
-#import allure
+import allure
 from pages.cafe import CafePage
 from pages.career import CareerPage
 from pages.contact import ContactPage
 from pages.espresso import EspressoPage
 from pages.gastro_lavka import GastroPage
 from pages.haltura import HalturaPage
+from pages.menu import MenuPage
 from pages.merch import MerchPage
 from pages.restaurant import RestaurantPage
 from pages.wine_shop import WineShopPage
@@ -23,6 +24,7 @@ def test_fill_restaurant_forms(browser):
     rp.open()
     rp.fill_ask_restaurant_forma()
 
+
 def test_fill_cafe_forms(browser):
     link = "https://winecheese.ru/cafe"
     print("\nStart Cafe forma")
@@ -33,6 +35,7 @@ def test_fill_cafe_forms(browser):
     cp.open()
     cp.fill_ask_cafe_forma()
 
+
 def test_fill_espresso_forms(browser):
     link = "https://winecheese.ru/espresso_bar"
     print("\nStart espresso forma")
@@ -40,6 +43,7 @@ def test_fill_espresso_forms(browser):
     ep = EspressoPage(browser, link)
     ep.open()
     ep.fill_ask_espresso_forma()
+
 
 def test_fill_merch_forms(browser):
     link = "https://winecheese.ru/merch"
@@ -51,15 +55,17 @@ def test_fill_merch_forms(browser):
     mp.open()
     mp.fill_order_shorts_form()
 
+
 def test_fill_wine_shop_forms(browser):
     link = "https://winecheese.ru/vine_shop"
     print("\nStart wine shop forma")
-    # browser.maximize_window()
+    browser.maximize_window()
     wp = WineShopPage(browser, link)
     wp.open()
     wp.fill_ask_wine_shop_forma()
     # wp.open()
     # wp.fill_ask_wine_forma()
+
 
 def test_fill_gastro_forms(browser):
     link = "https://winecheese.ru/gastronomic_shop"
@@ -78,6 +84,7 @@ def test_career_forms(browser):
     crp.open()
     crp.fill_career_form()
 
+
 def test_fill_haltura_forms(browser):
     link = "https://winecheese.ru/hackwork"
     print("\nStart haltura forma")
@@ -86,6 +93,7 @@ def test_fill_haltura_forms(browser):
     hp.open()
     hp.fill_haltura_form()
 
+
 def test_contact_form(browser):
     link = "https://winecheese.ru/contacts"
     print("\nStart contact form")
@@ -93,6 +101,20 @@ def test_contact_form(browser):
     conp = ContactPage(browser, link)
     conp.open()
     conp.fill_contact_form()
+
+
+def test_see_menus(browser):
+    link = "https://winecheese.ru/restaurant"
+    print("\nStart see menus")
+    browser.maximize_window()
+    rp = RestaurantPage(browser, link)
+    rp.open()
+    rp.seen_menu_rest()
+    link = "https://winecheese.ru/"
+    mp = MenuPage(browser, link)
+    mp.open()
+    mp.seen_menu_cafe()
+
 
     print("Finish Tests")
     time.sleep(1)

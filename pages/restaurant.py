@@ -24,6 +24,9 @@ class RestaurantPage(BaseClass):
     button_send_form = "//button[@class='Button_button__RNIJo']"
     close = "//button[@class='FormModal_modal__header_button__-X7yr']"
 
+    about_rest = "//h2[@class='TitleBlock_page_title__-dRZO AboutBlock_about__title__tAmOG']"
+    menu_rest = "//a[@href='https://backapiwinecheese.ru/backend/uploads/menu-1.pdf']"
+
 
     # Getters
     def get_restaurant_forma(self):
@@ -52,7 +55,11 @@ class RestaurantPage(BaseClass):
     def get_send_form(self):
         return WebDriverWait(self.browser, 30).until(EC.element_to_be_clickable((By.XPATH, self.button_send_form)))
 
+    def get_menu_rest(self):
+        return WebDriverWait(self.browser, 30).until(EC.element_to_be_clickable((By.XPATH, self.menu_rest)))
 
+    def get_about_rest(self):
+        return WebDriverWait(self.browser, 30).until(EC.element_to_be_clickable((By.XPATH, self.about_rest)))
 
     # Actions
     def click_restaurant_forma(self):
@@ -95,6 +102,14 @@ class RestaurantPage(BaseClass):
         self.get_name_fio().send_keys(*DataPage.fio_ask_rest)
         print("input name")
 
+    def click_about_rest(self):
+        self.get_about_rest().click()
+        print("Click about_rest")
+
+    def click_menu_rest(self):
+        self.get_menu_rest().click()
+        print("Click menu_rest")
+
 
     # Metods
     def fill_restaurant_forma(self):
@@ -128,3 +143,16 @@ class RestaurantPage(BaseClass):
         time.sleep(3)
         assert self.is_not_element_present(By.XPATH, self.close)
         Logger.add_end_step(url=self.browser.current_url, method="restaurant ask forma")
+
+
+    def seen_menu_rest(self):
+
+        self.click_about_rest()
+        self.click_menu_rest()
+        new_window = self.browser.window_handles[1]
+        self.browser.switch_to.window(new_window)
+        url = self.browser.current_url
+        print(url)
+        time.sleep(4)
+        assert url == "https://backapiwinecheese.ru/backend/uploads/menu-1.pdf"
+

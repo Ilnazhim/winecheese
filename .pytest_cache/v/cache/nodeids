@@ -1,7 +1,16 @@
 [
   "tests/test_buy_product.py::test_select_product_1",
   "tests/test_fill_forms.py::test_career_forms",
+  "tests/test_fill_forms.py::test_contact_form",
   "tests/test_fill_forms.py::test_contacts_form",
   "tests/test_fill_forms.py::test_fill_booking_forms",
-  "tests/test_fill_forms.py::test_fill_brone_forms"
+  "tests/test_fill_forms.py::test_fill_brone_forms",
+  "tests/test_fill_forms.py::test_fill_cafe_forms",
+  "tests/test_fill_forms.py::test_fill_espresso_forms",
+  "tests/test_fill_forms.py::test_fill_gastro_forms",
+  "tests/test_fill_forms.py::test_fill_haltura_forms",
+  "tests/test_fill_forms.py::test_fill_merch_forms",
+  "tests/test_fill_forms.py::test_fill_restaurant_forms",
+  "tests/test_fill_forms.py::test_fill_wine_shop_forms",
+  "tests/test_fill_forms.py::test_see_menus"
 ]
